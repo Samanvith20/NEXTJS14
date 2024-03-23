@@ -44,9 +44,9 @@ const Userpage=async()=>{
               <td>{user.isAdmin ? "Admin" : "Not Admin"}</td>
               <td>{user.isActive ? "online" :"offline"}</td>
                     <td>
-                      <Link href="/dashboard/users/singleUser">
-                      <button className={`${styles.button} ${styles.view}`}>View</button>
-                      </Link>
+                    <Link href={`/dashboard/users/${user.id}`}>
+                <button className={`${styles.button} ${styles.view}`}>View</button>
+                </Link>
                       
                        
                       <button className={`${styles.button} ${styles.delete}`}>Delete</button>
