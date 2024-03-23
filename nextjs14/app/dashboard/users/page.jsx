@@ -1,12 +1,13 @@
 import Image from "next/image"
 import styles from "../../ui/users/users.module.css"
+import Link from "next/link"
 const Userpage=()=>{
     return(
         <div className={styles.container}>
         <div className={styles.top}>
-        
-        <button className={styles.addButton}>Add New</button>
-                 
+        <Link href="/dashboard/users/add">
+         <button className={styles.addButton}>Add New</button>
+         </Link> 
         </div>
 
               <table className={styles.table}>

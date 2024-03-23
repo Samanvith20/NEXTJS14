@@ -1,12 +1,13 @@
 import Image from "next/image"
 import styles from "../../ui/products/products.module.css"
+import Link from "next/link"
 const ProductsPage=()=>{
     return(
         <div className={styles.container}>
         <div className={styles.top}>
-        
-        <button className={styles.addButton}>Add New</button>
-                 
+          <Link href="/dashboard/products/add">
+        <button className={styles.addButton}>Add Product</button>
+        </Link>
         </div>
 
               <table className={styles.table}>
