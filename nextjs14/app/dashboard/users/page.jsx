@@ -39,9 +39,9 @@ const Userpage=()=>{
                     <td>Admin</td>
                     <td>Active</td>
                     <td>
-                      
+                      <Link href="/dashboard/users/singleUser">
                       <button className={`${styles.button} ${styles.view}`}>View</button>
-                     
+                      </Link>
                       
                        
                       <button className={`${styles.button} ${styles.delete}`}>Delete</button>
