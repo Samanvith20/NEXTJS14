@@ -27,7 +27,7 @@ const Userpage=async()=>{
                   </tr>
                 </thead>
                 <tbody>
-                {users.map((user)=>{
+                {users.map((user)=>(
                    <tr>
                     <td>
                       <div className={styles.user}>
@@ -53,7 +53,7 @@ const Userpage=async()=>{
                     
                     </td>
                   </tr>
-                    })}
+                    ))}
                 </tbody>
               </table>
               

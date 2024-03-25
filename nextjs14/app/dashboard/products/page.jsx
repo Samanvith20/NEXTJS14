@@ -1,7 +1,9 @@
 import Image from "next/image"
 import styles from "../../ui/products/products.module.css"
 import Link from "next/link"
-const ProductsPage=()=>{
+import { fetchProducts } from "@/app/lib"
+const ProductsPage=async()=>{
+       const Products=await fetchProducts()
     return(
         <div className={styles.container}>
         <div className={styles.top}>
@@ -22,7 +24,9 @@ const ProductsPage=()=>{
                   </tr>
                 </thead>
                 <tbody>
-                 
+                 {Products.map((product)=>(
+
+                
                    <tr>
                     <td>
                       <div className={styles.user}>
@@ -30,16 +34,16 @@ const ProductsPage=()=>{
                         width={40}
                         height={40}
                         className={styles.userImage}/>
-                         laptops
+                           {product.title}
                       </div>
       
                     </td>
-                    <td>laptop is very good for coding</td>
-                    <td>$999.00</td>
-                    <td>Avaliable</td>
-                    <td>23-03-24</td>
+                    <td>{product.desc}</td>
+            <td>${product.price}</td>
+            <td>{product.cratedAt?.toString().slice(4,16)}</td>
+            <td>{product.stock}</td>
                     <td>
-                      <Link href="/dashboard/products/singleProduct">
+                    <Link href={`/dashboard/products/${product.id}`}>
                       <button className={`${styles.button} ${styles.view}`}>View</button>
                       </Link>
                       
@@ -48,7 +52,7 @@ const ProductsPage=()=>{
                     
                     </td>
                   </tr>
-                   
+                    ))} 
                 </tbody>
               </table>
           </div>
