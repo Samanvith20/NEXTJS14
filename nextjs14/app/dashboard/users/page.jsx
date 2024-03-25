@@ -2,9 +2,10 @@ import Image from "next/image"
 import styles from "../../ui/users/users.module.css"
 import Link from "next/link"
 import { fetchUsers } from "@/app/lib"
+import { deleteUser } from "@/app/lib/Actions"
 const Userpage=async()=>{
    const users=  await fetchUsers()
-   console.log(users)
+   //console.log(users)
     return(
         <div className={styles.container}>
         <div className={styles.top}>
@@ -28,6 +29,7 @@ const Userpage=async()=>{
                 </thead>
                 <tbody>
                 {users.map((user)=>(
+                  
                    <tr>
                     <td>
                       <div className={styles.user}>
@@ -48,9 +50,10 @@ const Userpage=async()=>{
                 <button className={`${styles.button} ${styles.view}`}>View</button>
                 </Link>
                       
-                       
+                       <form action={deleteUser}>
+                        <input type="hidden"  name="id" value={user.id}/>
                       <button className={`${styles.button} ${styles.delete}`}>Delete</button>
-                    
+                      </form>
                     </td>
                   </tr>
                     ))}

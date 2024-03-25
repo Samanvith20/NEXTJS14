@@ -2,6 +2,7 @@ import Image from "next/image"
 import styles from "../../ui/products/products.module.css"
 import Link from "next/link"
 import { fetchProducts } from "@/app/lib"
+import { deleteProduct } from "@/app/lib/Actions"
 const ProductsPage=async()=>{
        const Products=await fetchProducts()
     return(
@@ -47,9 +48,10 @@ const ProductsPage=async()=>{
                       <button className={`${styles.button} ${styles.view}`}>View</button>
                       </Link>
                       
-                       
+                       <form action={deleteProduct}>
+                       <input type="hidden"  name="id" value={product.id}/>
                       <button className={`${styles.button} ${styles.delete}`}>Delete</button>
-                    
+                      </form>
                     </td>
                   </tr>
                     ))} 

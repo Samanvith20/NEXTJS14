@@ -1,39 +1,51 @@
-import styles from "../../../ui/products/SingleProduct.module.css"
-import Image from 'next/image'
+import { fetchProduct } from "@/app/lib";
+import styles from "../../../ui/products/SingleProduct.module.css";
+import Image from 'next/image';
+import { Updateproduct } from "@/app/lib/Actions";
 
-const singleProduct = () => {
+const singleProduct = async ({ params }) => {
+  if (!params || !params.id) {
+    // Handle case where params or id is missing
+    return null;
+  }
+
+  const { id } = params;
+  const product = await fetchProduct(id);
+  console.log(product);
+
   return (
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-            <Image src="/avatar.png" alt="" fill/>
+          <Image src="/avatar.png" alt="" fill />
         </div>
-        Laptop
+        {product.Title}
       </div>
       <div className={styles.formContainer}>
-        <form className={styles.form}>
-            <label>Title</label>
-            <input type='text' name='title' placeholder='John Cena'/>
-            <label>Price</label>
-            <input type='number' name='price' placeholder='$999'/>
-            <label>Stock</label>
-            <input type='number' name='stock' placeholder='99'/>
-            <label>Color</label>
-            <input type='text' name='color' placeholder='Black'/>
-            <label>Size</label>
-            <input type='text' name='size' placeholder='14'/>
-            <label>Category</label>
-            <select name='category' id='category'>
+        <form oction={Updateproduct}className={styles.form}>
+          <input type="hidden" name="id" value={product.id} />
+          <label>Title</label>
+          <input type='text' name='title' defaultValue={product.Title} />
+          <label>Price</label>
+          <input type='number' name='price' defaultValue={product.Price} />
+          <label>Stock</label>
+          <input type='number' name='stock' defaultValue={product.Stock} />
+          <label>Color</label>
+          <input type='text' name='color' defaultValue={product.Color} />
+          <label>Size</label>
+          <input type='text' name='size' defaultValue={product.Size} />
+          <label>Category</label>
+          <select name='category' defaultValue={product.Category}>
             <option value='kitchen'>Kitchen</option>
             <option value='computer'>Computer</option>
-            </select>
-            <label> Description </label>
-            <textarea name='description' id='description'></textarea>
-            <button>Update</button>
+          </select>
+          <label>Description</label>
+          <textarea name='description' defaultValue={product.Description}></textarea>
+          <button type="submit">Update</button>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default singleProduct
+export default singleProduct;
